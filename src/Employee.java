@@ -1,0 +1,95 @@
+/// Сотрудник
+public class Employee {
+
+    /// Уникальный идентификатор
+    private int id;
+
+    public int getId() {
+        return id;
+    }
+
+    /*public void setId(int id) {
+        Id = id;
+    }*/
+
+
+    /// Конструктор
+    public Employee(String FIO, int departmentId, float salary) {
+        id = counter;
+        counter++;
+        this.fIO = FIO;
+        this.departmentId = departmentId;
+        this.salary = salary;
+    }
+
+
+    /// Счетчик сотрудников
+    private static int counter;
+
+    public static int GetCounter() {
+        return counter;
+    }
+
+    public static void SetCounter(int counter) {
+        Employee.counter = counter;
+    }
+
+
+    /// ФИО
+    private String fIO;
+
+    public String GetFIO() {
+        return this.fIO;
+    }
+
+    public void SetFIO(String FIO) {
+        this.fIO = FIO;
+    }
+
+
+    /// Номер отдела
+    private int departmentId;
+
+    public int GetDepartmentId() {
+        return this.departmentId;
+    }
+
+    public void SetDepartmentId(int departmentId) {
+        this.departmentId = departmentId;
+    }
+
+
+    /// Заработная плата
+    private float salary;
+
+    public float GetSalary() {
+        return salary;
+    }
+
+    public void SetSalary(float salary) {
+        this.salary = salary;
+    }
+
+    /// Конвертировать все поля класса в одну строку
+    public String ToString()
+    {
+        return id + " - " + fIO + " - " + departmentId + " - " + salary;
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (this.id == ((Employee)o).id) return true;
+        else {
+            return false;
+        }
+    }
+
+    @Override
+    public int hashCode() {
+        //int result = this.id != null ? position.hashCode() : 0;
+        int result = this.hashCode();
+        result = 31 * result + id;
+        return result;
+    }
+}
