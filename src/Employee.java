@@ -71,9 +71,15 @@ public class Employee {
     }
 
     /// Конвертировать все поля класса в одну строку
-    public String ToString()
+    public String ToStringAll()
     {
-        return id + " - " + fIO + " - " + departmentId + " - " + salary;
+        return id + " - " + fIO + " - отдел №" + departmentId + " - " + salary;
+    }
+
+    /// Конвертировать все поля класса (кроме номера отдела) в одну строку
+    public String ToStringAllExceptTheDepartmentId()
+    {
+        return id + " - " + fIO + " - " + salary;
     }
 
     @Override
@@ -85,6 +91,8 @@ public class Employee {
         }
     }
 
+    // Вернуть, починить
+    /*
     @Override
     public int hashCode() {
         //int result = this.id != null ? position.hashCode() : 0;
@@ -92,4 +100,5 @@ public class Employee {
         result = 31 * result + id;
         return result;
     }
+     */
 }
