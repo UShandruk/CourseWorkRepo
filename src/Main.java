@@ -6,22 +6,8 @@ import java.util.List;
 // click the <icon src="AllIcons.Actions.Execute"/> icon in the gutter.
 public class Main {
 
-    public static String s = "";
-
-    // Хранилище записей о сотрудниках
-    public static Employee[] arrayEmployees = new Employee[10];
-
     public static void main(String[] args) {
-        arrayEmployees[0] = new Employee("Иванов Иван Иванович", 1, 50000);
-        arrayEmployees[1] = new Employee("Петров Сергей Семёнович", 3, 40000);
-        arrayEmployees[2] = new Employee("Павлова Екатерина Ивановна", 2, 70000);
-        arrayEmployees[3] = new Employee("Антонова Марина Сергеевна", 1, 90000);
-        arrayEmployees[4] = new Employee("Сергеев Семён Петрович", 5, 90000);
-        arrayEmployees[5] = new Employee("Иванов Александр Иванович", 1, 50000);
-        arrayEmployees[6] = new Employee("Петров Семён Александрович", 3, 50000);
-        arrayEmployees[7] = new Employee("Семёнова Елена Ивановна", 2, 60000);
-        arrayEmployees[8] = new Employee("Антонова Марина Сергеевна", 4, 80000);
-        arrayEmployees[9] = new Employee("Сергеев Семён Алексеевич", 1, 50000);
+
 
         // Базовая сложность
         /*
@@ -52,7 +38,7 @@ public class Main {
         */
 
         // Повышенная сложность
-        System.out.println("1. Проиндексировать зарплату (вызвать изменение зп у всех сотрудников на величину аргумента в %)");//System.out.printf
+        /*System.out.println("1. Проиндексировать зарплату (вызвать изменение зп у всех сотрудников на величину аргумента в %)");//System.out.printf
         float percentValue = 50;
         System.out.println("Число = " + percentValue);
         List<Employee> listEmployeesIndexed = HigherDifficultyTasks.IndexTheSalaryOfDepartment(arrayEmployees, 3, percentValue);
@@ -96,13 +82,60 @@ public class Main {
         float salaryValue2 = 50000;
         System.out.println("Число = " + salaryValue2);
         List<Employee> listEmployeesWithSalaryMore = HigherDifficultyTasks.GetAllEmployeesWithSalaryOfMoreThanNumberOfDepartment(arrayEmployees, 5, salaryValue2);
-        PrintAllEmployeesExceptTheDepartmentId(listEmployeesWithSalaryMore);
+        PrintAllEmployeesExceptTheDepartmentId(listEmployeesWithSalaryMore);*/
         /*
         List<Employee> listEmployeesOfDepartment = HigherDifficultyTasks.GetListEmployeesOfDepartment(arrayEmployees,4);
         PrintAllEmployees(listEmployeesOfDepartment);*/
 
-    }
+        // Очень сложно
+        EmployeeBook employeeBook = new EmployeeBook();
+        System.out.println("1. Проиндексировать зарплату (вызвать изменение зп у всех сотрудников на величину аргумента в %)");//System.out.printf
+        float percentValue = 50;
+        System.out.println("Число = " + percentValue);
+        List<Employee> listEmployeesIndexed = employeeBook.IndexTheSalaryOfDepartment(3, percentValue);
+        PrintAllEmployees(listEmployeesIndexed);
+        System.out.println();
 
+        System.out.println("2.a. Получить в качестве параметра номер отдела (1-5) и найти сотрудника с минимальной зп");
+        System.out.println(employeeBook.GetEmployeeWithAMinimumSalaryOfDepartment(2).ToStringAll());
+        System.out.println();
+
+        System.out.println("2.b. Получить в качестве параметра номер отдела (1-5) и найти сотрудника с максимальной зп");
+        System.out.println(employeeBook.GetEmployeeWithAMaximumSalaryOfDepartment(5).ToStringAll());
+        System.out.println();
+
+        System.out.println("2.c. Получить в качестве параметра номер отдела (1-5) и найти сумму затрат на зп по отделу");
+        System.out.println(employeeBook.GetSalariesAmountOfDepartment(4));
+        System.out.println();
+
+        System.out.println("2.d. Получить в качестве параметра номер отдела (1-5) и найти среднюю зп по отделу");
+        System.out.println(employeeBook.GetAverageSalaryOfDepartment(4));
+        System.out.println();
+
+        System.out.println("2.e. Проиндексировать зарплату всех сотрудников отдела на процент, который приходит в качестве параметра");
+        System.out.println("Дублирует задание 1");
+        System.out.println();
+
+        System.out.println("2.f. Напечатать всех сотрудников отдела (все данные, кроме отдела)");
+        // System.out.println(HigherDifficultyTasks.GetListEmployeesOfDepartment(arrayEmployees, 1));
+        List<Employee> listEmployeesOfDepartment = employeeBook.GetListEmployeesOfDepartment(1);
+        PrintAllEmployeesExceptTheDepartmentId(listEmployeesOfDepartment);
+        System.out.println();
+
+        System.out.println("3.a. Получить в качестве параметра число и вывести всех сотрудников с зп меньше числа (распечатать id, фио и зп в консоль)");
+        float salaryValue1 = 50000;
+        System.out.println("Число = " + salaryValue1);
+        List<Employee> listEmployeesWithSalaryLess = employeeBook.GetAllEmployeesWithSalaryOfLessThanNumberOfDepartment(5, salaryValue1);
+        PrintAllEmployeesExceptTheDepartmentId(listEmployeesWithSalaryLess);
+        System.out.println();
+
+        System.out.println("3.b. Получить в качестве параметра число и вывести всех сотрудников с зп больше (или равно) числа (распечатать id, фио и зп в консоль)");
+        float salaryValue2 = 50000;
+        System.out.println("Число = " + salaryValue2);
+        List<Employee> listEmployeesWithSalaryMore = employeeBook.GetAllEmployeesWithSalaryOfMoreThanNumberOfDepartment(5, salaryValue2);
+        PrintAllEmployeesExceptTheDepartmentId(listEmployeesWithSalaryMore);
+    }
+/*
     // Получить список всех сотрудников со всеми имеющимися по ним данными (значения всех полей (toString))
     private static List<String> getEmployeesString()
     {
@@ -112,7 +145,7 @@ public class Main {
             listStringEmployees.add(employee.ToStringAll());
         }
         return listStringEmployees;
-    }
+    }*/
 
     // Вывести в консоль список всех сотрудников со всеми имеющимися по ним данными
     public static void PrintAllEmployeesString(List<String> listStringEmployees)
@@ -139,17 +172,8 @@ public class Main {
         }
     }
 
-    // Посчитать сумму затрат на ЗП в месяц
-    public static float GetSalariesAmount()
-    {
-        float amount = 0;
-        for (Employee employee : arrayEmployees)
-        {
-            amount += employee.GetSalary();
-        }
-        return amount;
-    }
 
+/*
     // Найти сотрудника с минимальной ЗП
     public static Employee GetEmployeeWithAMinimumSalary()
     {
@@ -195,5 +219,5 @@ public class Main {
         for (Employee employee : arrayEmployees){
             System.out.println(employee.GetFIO());
         }
-    }
+    }*/
 }
