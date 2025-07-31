@@ -134,6 +134,9 @@ public class Main {
         System.out.println("Число = " + salaryValue2);
         List<Employee> listEmployeesWithSalaryMore = employeeBook.getAllEmployeesWithSalaryOfMoreThanNumberOfDepartment(5, salaryValue2);
         printAllEmployeesExceptTheDepartmentId(listEmployeesWithSalaryMore);
+
+        System.out.println("1-й equals() 2-й // false");
+        System.out.println(listEmployeesOfDepartment.get(1).equals(listEmployeesOfDepartment.get(2)));
     }
 /*
     // Получить список всех сотрудников со всеми имеющимися по ним данными (значения всех полей (toString))
