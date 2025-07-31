@@ -6,7 +6,7 @@ import java.util.List;
 // click the <icon src="AllIcons.Actions.Execute"/> icon in the gutter.
 public class Main {
 
-    public static void main(String[] args) {
+    public static void main(String[] args){
 
 
         // Базовая сложность
@@ -117,7 +117,6 @@ public class Main {
         System.out.println();
 
         System.out.println("2.f. Напечатать всех сотрудников отдела (все данные, кроме отдела)");
-        // System.out.println(HigherDifficultyTasks.GetListEmployeesOfDepartment(arrayEmployees, 1));
         List<Employee> listEmployeesOfDepartment = employeeBook.getListEmployeesOfDepartment(1);
         printAllEmployeesExceptTheDepartmentId(listEmployeesOfDepartment);
         System.out.println();
@@ -135,8 +134,28 @@ public class Main {
         List<Employee> listEmployeesWithSalaryMore = employeeBook.getAllEmployeesWithSalaryOfMoreThanNumberOfDepartment(5, salaryValue2);
         printAllEmployeesExceptTheDepartmentId(listEmployeesWithSalaryMore);
 
-        System.out.println("1-й equals() 2-й // false");
-        System.out.println(listEmployeesOfDepartment.get(1).equals(listEmployeesOfDepartment.get(2)));
+        System.out.println("1-й equals() 2-й // должно быть false");
+        List<Employee> listEmployeesAll = employeeBook.getListEmployeesAll();
+        System.out.println(listEmployeesAll.get(1).equals(listEmployeesAll.get(2)));
+
+
+
+        System.out.println();
+        System.out.println("Проверка методов добавления и удаления");
+        System.out.println("До удаления");
+        //listEmployeesAll = employeeBook.getListEmployeesAll();
+        printAllEmployees(listEmployeesAll);
+
+        System.out.println("После удаления");
+        employeeBook.deleteEmployee(1);
+        listEmployeesAll = employeeBook.getListEmployeesAll();
+        printAllEmployees(listEmployeesAll);
+
+        System.out.println("После добавления");
+        Employee newEmployee = new Employee("Твердокаменная Венера Федуловна", 2, 50000);
+        employeeBook.addEmployee(newEmployee);
+        listEmployeesAll = employeeBook.getListEmployeesAll();
+        printAllEmployees(listEmployeesAll);
     }
 /*
     // Получить список всех сотрудников со всеми имеющимися по ним данными (значения всех полей (toString))

@@ -1,5 +1,5 @@
-import java.util.Arrays;
-import java.util.List;
+import java.util.*;
+import java.util.ArrayList;
 
 // Хранилище записей о сотрудниках
 public class EmployeeBook {
@@ -20,47 +20,62 @@ public class EmployeeBook {
     // Заполнить книгу
     public void fill()
     {
-        arrayEmployees[0] = new Employee("Иванов Иван Иванович", 1, 50000);
-        arrayEmployees[1] = new Employee("Петров Сергей Семёнович", 3, 40000);
+        arrayEmployees[0] = new Employee("Иванов Иван Иванович", 4, 50000);
+        arrayEmployees[1] = new Employee("Иванов Иван Иванович", 3, 50000);
         arrayEmployees[2] = new Employee("Павлова Екатерина Ивановна", 2, 70000);
         arrayEmployees[3] = new Employee("Антонова Марина Сергеевна", 1, 90000);
         arrayEmployees[4] = new Employee("Сергеев Семён Петрович", 5, 90000);
-        arrayEmployees[5] = new Employee("Иванов Александр Иванович", 1, 50000);
+       /* arrayEmployees[5] = new Employee("Иванов Александр Иванович", 1, 40000);
         arrayEmployees[6] = new Employee("Петров Семён Александрович", 3, 50000);
         arrayEmployees[7] = new Employee("Семёнова Елена Ивановна", 2, 60000);
         arrayEmployees[8] = new Employee("Антонова Марина Сергеевна", 4, 80000);
-        arrayEmployees[9] = new Employee("Сергеев Семён Алексеевич", 1, 50000);
+        arrayEmployees[9] = new Employee("Сергеев Семён Алексеевич", 1, 50000);*/
     }
 
     // Добавить нового сотрудника
-    public boolean addEmployee(Employee employee)
-    {
-        for (Employee e : arrayEmployees) {
-            if (e == null)
-            {
-                e = employee;
-                return true;
-            }
+    public String addEmployee(Employee employeeToAdd) {
+        boolean isEmployeeExist = (Arrays.stream(arrayEmployees).filter(emp -> emp.getId() == employeeToAdd.getId())) == null;
+        if(isEmployeeExist)
+        {
+            return ("Сотрудник был добавлен ранее.");
         }
-        return false;
+        else {
+            int cellCounter = 0;
+            for (Employee e : arrayEmployees) {
+                if (e == null) {
+                    arrayEmployees[cellCounter] = employeeToAdd;
+                    return ("Cотрудник успешно добавлен.");
+                }
+                else cellCounter++;
+            }
+            return ("cellCounter = " + cellCounter + ", employeeToAdd.Id = " + employeeToAdd.getId());
+        }
     }
 
     // Удалить сотрудника
-    public boolean deleteEmployee(int employeeId)
-    {
-        for (Employee e : arrayEmployees) {
-            if (e.getId() == employeeId)
-            {
-                e = null;
-                return true;
+    public String deleteEmployee(int employeeToDelId) {
+        Employee employeeToDel = findEmployeeById(employeeToDelId);
+        if(employeeToDel == null)
+        {
+            return ("Сотрудник был удалён ранее.");
+        }
+        else {
+            int cellCounter = 0;
+            for (Employee e : arrayEmployees) {
+                if (e.getId() == employeeToDelId) {
+                    arrayEmployees[cellCounter] = null;
+                    return ("Cотрудник успешно удалён.");
+                }
+                else cellCounter++;
             }
         }
-        return false;
+        return ("Сотрудник успешно удалён.");
     }
 
     // Найти сотрудника по его id
     public Employee findEmployeeById(int employeeId)
     {
+        //Arrays.stream(arrayEmployees).filter(emp -> emp.getId() == employeeId);
         for (Employee e : arrayEmployees) {
             if (e.getId() == employeeId)
             {
@@ -70,14 +85,28 @@ public class EmployeeBook {
         return null;
     }
 
-    public List<Employee> getListEmployeesOfDepartment(int departmentNumber)
-    {
-        List<Employee> listEmployeesOfDepartment = Arrays.stream(arrayEmployees).filter(e -> e.getDepartmentId() == departmentNumber).toList();
-        if(listEmployeesOfDepartment.size() == 0)
-        {
-            throw new RuntimeException("В отделе №" + departmentNumber + " нет сотрудников.");
+
+    // Получить список сотрудников отдела
+    public List<Employee> getListEmployeesOfDepartment(int departmentNumber) {
+        List<Employee> listEmployeesOfDepartment = null;
+        if (departmentNumber > 0) {
+            //listEmployeesOfDepartment = Arrays.stream(arrayEmployees).filter(e -> e.getDepartmentId() == departmentNumber).toList();
+            listEmployeesOfDepartment = Arrays.stream(arrayEmployees).filter(e -> e != null).filter(e -> e.getDepartmentId() == departmentNumber).toList();
+            if (listEmployeesOfDepartment.size() == 0) {
+                throw new RuntimeException("В отделе №" + departmentNumber + " нет сотрудников.");
+            }
+        }
+        else {
+            listEmployeesOfDepartment = getListEmployeesAll();
         }
         return listEmployeesOfDepartment;
+    }
+
+    // Получить список сотрудников (всех отделов)
+    public List<Employee> getListEmployeesAll()
+    {
+        List<Employee> listEmployeesAll = Arrays.stream(arrayEmployees).filter(e -> e != null).toList();
+        return listEmployeesAll;
     }
 
     // 1. Проиндексировать зарплату (вызвать изменение зп у всех сотрудников на величину аргумента в %)
@@ -114,7 +143,7 @@ public class EmployeeBook {
         List<Employee> listEmployeesOfDepartment = getListEmployeesOfDepartment(departmentNumber);
         Employee maxEmployee = listEmployeesOfDepartment.get(0);
         float maxSalary = maxEmployee.getSalary();
-        for (Employee employee : arrayEmployees)
+        for (Employee employee : listEmployeesOfDepartment)
         {
             if(employee.getSalary() > maxSalary)
             {
@@ -130,9 +159,9 @@ public class EmployeeBook {
         List<Employee> listEmployeesOfDepartment = getListEmployeesOfDepartment(departmentNumber);
 
         float amount = 0;
-        for (Employee arrayEmployee : listEmployeesOfDepartment)
+        for (Employee employee : listEmployeesOfDepartment)
         {
-            amount += arrayEmployee.getSalary();
+            amount += employee.getSalary();
         }
         return amount;
     }
