@@ -4,13 +4,18 @@ public class Employee {
     /// Уникальный идентификатор
     private int id;
 
-    public int getId() {
-        return id;
-    }
+    /// Счетчик сотрудников
+    private static int counter;
 
-    /*public void setId(int id) {
-        Id = id;
-    }*/
+    /// ФИО
+    private String fIO;
+
+    /// Номер отдела
+    private int departmentId;
+
+    /// Заработная плата
+    private float salary;
+
 
 
     /// Конструктор
@@ -23,8 +28,14 @@ public class Employee {
     }
 
 
-    /// Счетчик сотрудников
-    private static int counter;
+    /// Методы
+    public int getId() {
+        return id;
+    }
+
+    /*public void setId(int id) {
+        Id = id;
+    }*/
 
     public static int getCounter() {
         return counter;
@@ -34,10 +45,6 @@ public class Employee {
         Employee.counter = counter;
     }
 
-
-    /// ФИО
-    private String fIO;
-
     public String getFIO() {
         return this.fIO;
     }
@@ -46,10 +53,6 @@ public class Employee {
         this.fIO = fIO;
     }
 
-
-    /// Номер отдела
-    private int departmentId;
-
     public int getDepartmentId() {
         return this.departmentId;
     }
@@ -57,10 +60,6 @@ public class Employee {
     public void setDepartmentId(int departmentId) {
         this.departmentId = departmentId;
     }
-
-
-    /// Заработная плата
-    private float salary;
 
     public float getSalary() {
         return salary;

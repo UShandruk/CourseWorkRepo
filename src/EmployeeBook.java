@@ -3,12 +3,19 @@ import java.util.List;
 
 // Хранилище записей о сотрудниках
 public class EmployeeBook {
+
+    // Записи о сотрудниках
     private Employee[] arrayEmployees;
 
+
+
+    // Конструктор
     public EmployeeBook() {
         this.arrayEmployees = new Employee[10];
         fill();
     }
+
+
 
     // Заполнить книгу
     public void fill()

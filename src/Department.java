@@ -4,6 +4,9 @@ public class Department {
     /// Уникальный идентификатор
     private int id;
 
+    /// Название отдела
+    private String name;
+
     public int getId() {
         return id;
     }
@@ -11,10 +14,6 @@ public class Department {
     public void setId(int id) {
         this.id = id;
     }
-
-
-    /// Название отдела
-    private String name;
 
     public String getName() {
         return name;
