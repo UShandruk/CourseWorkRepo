@@ -7,11 +7,11 @@ public class EmployeeBook {
 
     public EmployeeBook() {
         this.arrayEmployees = new Employee[10];
-        Fill();
+        fill();
     }
 
     // Заполнить книгу
-    public void Fill()
+    public void fill()
     {
         arrayEmployees[0] = new Employee("Иванов Иван Иванович", 1, 50000);
         arrayEmployees[1] = new Employee("Петров Сергей Семёнович", 3, 40000);
@@ -26,7 +26,7 @@ public class EmployeeBook {
     }
 
     // Добавить нового сотрудника
-    public boolean AddEmployee(Employee employee)
+    public boolean addEmployee(Employee employee)
     {
         for (Employee e : arrayEmployees) {
             if (e == null)
@@ -39,7 +39,7 @@ public class EmployeeBook {
     }
 
     // Удалить сотрудника
-    public boolean DeleteEmployee(int employeeId)
+    public boolean deleteEmployee(int employeeId)
     {
         for (Employee e : arrayEmployees) {
             if (e.getId() == employeeId)
@@ -52,7 +52,7 @@ public class EmployeeBook {
     }
 
     // Найти сотрудника по его id
-    public Employee FindEmployeeById(int employeeId)
+    public Employee findEmployeeById(int employeeId)
     {
         for (Employee e : arrayEmployees) {
             if (e.getId() == employeeId)
@@ -63,9 +63,9 @@ public class EmployeeBook {
         return null;
     }
 
-    public List<Employee> GetListEmployeesOfDepartment(int departmentNumber)
+    public List<Employee> getListEmployeesOfDepartment(int departmentNumber)
     {
-        List<Employee> listEmployeesOfDepartment = Arrays.stream(arrayEmployees).filter(e -> e.GetDepartmentId() == departmentNumber).toList();
+        List<Employee> listEmployeesOfDepartment = Arrays.stream(arrayEmployees).filter(e -> e.getDepartmentId() == departmentNumber).toList();
         if(listEmployeesOfDepartment.size() == 0)
         {
             throw new RuntimeException("В отделе №" + departmentNumber + " нет сотрудников.");
@@ -74,26 +74,26 @@ public class EmployeeBook {
     }
 
     // 1. Проиндексировать зарплату (вызвать изменение зп у всех сотрудников на величину аргумента в %)
-    public void IndexTheSalary(int percent)
+    public void indexTheSalary(int percent)
     {
         float fPercent = 1 + (percent / 100);
         float salary = 0;
         for (Employee employee : arrayEmployees) {
-            salary = employee.GetSalary();
+            salary = employee.getSalary();
             salary = salary * fPercent;
-            employee.SetSalary(salary);
+            employee.setSalary(salary);
         }
     }
 
     // 2.a Получить в качестве параметра номер отдела и найти сотрудника с минимальной ЗП
-    public Employee GetEmployeeWithAMinimumSalaryOfDepartment(int departmentNumber)
+    public Employee getEmployeeWithAMinimumSalaryOfDepartment(int departmentNumber)
     {
-        List<Employee> listEmployeesOfDepartment = GetListEmployeesOfDepartment(departmentNumber);
+        List<Employee> listEmployeesOfDepartment = getListEmployeesOfDepartment(departmentNumber);
         Employee minEmployee = listEmployeesOfDepartment.get(0);
-        float minSalary = minEmployee.GetSalary();
+        float minSalary = minEmployee.getSalary();
         for (Employee employee : listEmployeesOfDepartment)
         {
-            if(employee.GetSalary() < minSalary)
+            if(employee.getSalary() < minSalary)
             {
                 minEmployee = employee;
             }
@@ -102,14 +102,14 @@ public class EmployeeBook {
     }
 
     // 2.b Получить в качестве параметра номер отдела и найти сотрудника с максимальной ЗП
-    public Employee GetEmployeeWithAMaximumSalaryOfDepartment(int departmentNumber)
+    public Employee getEmployeeWithAMaximumSalaryOfDepartment(int departmentNumber)
     {
-        List<Employee> listEmployeesOfDepartment = GetListEmployeesOfDepartment(departmentNumber);
+        List<Employee> listEmployeesOfDepartment = getListEmployeesOfDepartment(departmentNumber);
         Employee maxEmployee = listEmployeesOfDepartment.get(0);
-        float maxSalary = maxEmployee.GetSalary();
+        float maxSalary = maxEmployee.getSalary();
         for (Employee employee : arrayEmployees)
         {
-            if(employee.GetSalary() > maxSalary)
+            if(employee.getSalary() > maxSalary)
             {
                 maxEmployee = employee;
             }
@@ -118,78 +118,78 @@ public class EmployeeBook {
     }
 
     // 2.c Получить в качестве параметра номер отдела и найти cумму затрат на ЗП по отделу;
-    public float GetSalariesAmountOfDepartment(int departmentNumber)
+    public float getSalariesAmountOfDepartment(int departmentNumber)
     {
-        List<Employee> listEmployeesOfDepartment = GetListEmployeesOfDepartment(departmentNumber);
+        List<Employee> listEmployeesOfDepartment = getListEmployeesOfDepartment(departmentNumber);
 
         float amount = 0;
         for (Employee arrayEmployee : listEmployeesOfDepartment)
         {
-            amount += arrayEmployee.GetSalary();
+            amount += arrayEmployee.getSalary();
         }
         return amount;
     }
 
     // 2.d Получить в качестве параметра номер отдела и подсчитать среднюю зп по отделу (учесть, что количество людей в отделе отличается от employees.length);
-    public float GetAverageSalaryOfDepartment(int departmentNumber)
+    public float getAverageSalaryOfDepartment(int departmentNumber)
     {
-        List<Employee> listEmployeesOfDepartment = GetListEmployeesOfDepartment(departmentNumber);
-        float salariesAmount = GetSalariesAmountOfDepartment(departmentNumber);
+        List<Employee> listEmployeesOfDepartment = getListEmployeesOfDepartment(departmentNumber);
+        float salariesAmount = getSalariesAmountOfDepartment(departmentNumber);
         int employeeCount = listEmployeesOfDepartment.toArray().length;
         float averageSalary = salariesAmount / employeeCount;
         return averageSalary;
     }
 
     // 2.e Проиндексировать зарплату всех сотрудников отдела на процент, который приходит в качестве параметра;
-    public List<Employee> IndexTheSalaryOfDepartment(int departmentNumber, float percent)
+    public List<Employee> indexTheSalaryOfDepartment(int departmentNumber, float percent)
     {
         float fPercent = 1 + (percent / 100);
         float salary = 0;
 
-        List<Employee> listEmployeesOfDepartment = GetListEmployeesOfDepartment(departmentNumber);
+        List<Employee> listEmployeesOfDepartment = getListEmployeesOfDepartment(departmentNumber);
 
         for (Employee employee : listEmployeesOfDepartment) {
-            salary = employee.GetSalary();
+            salary = employee.getSalary();
             salary = salary * fPercent;
-            employee.SetSalary(salary);
+            employee.setSalary(salary);
         }
 
         return listEmployeesOfDepartment;
     }
 
     // 2.f Напечатать всех сотрудников отдела (все данные, кроме отдела)
-    public void PrintAllEmployeesOfDepartment(int departmentNumber)
+    public void printAllEmployeesOfDepartment(int departmentNumber)
     {
-        List<Employee> listEmployeesOfDepartment = GetListEmployeesOfDepartment(departmentNumber);
+        List<Employee> listEmployeesOfDepartment = getListEmployeesOfDepartment(departmentNumber);
 
         for (Employee employee : listEmployeesOfDepartment){
-            System.out.println(employee.ToStringAllExceptTheDepartmentId());
+            System.out.println(employee.toStringAllExceptTheDepartmentId());
         }
     }
 
     // 3.a Получить в качестве параметра число и вывести всех сотрудников с зп меньше числа (распечатать id, фио и зп в консоль)
-    public List<Employee> GetAllEmployeesWithSalaryOfLessThanNumberOfDepartment(int departmentNumber, float salaryValue)
+    public List<Employee> getAllEmployeesWithSalaryOfLessThanNumberOfDepartment(int departmentNumber, float salaryValue)
     {
-        List<Employee> listEmployeesOfDepartment = GetListEmployeesOfDepartment(departmentNumber);
-        List<Employee> listEmployeesWithSalaryLessThanValue = (Arrays.stream(listEmployeesOfDepartment.toArray()).filter(e -> ((Employee)e).GetSalary() < salaryValue)).map(e -> (Employee)e).toList();
+        List<Employee> listEmployeesOfDepartment = getListEmployeesOfDepartment(departmentNumber);
+        List<Employee> listEmployeesWithSalaryLessThanValue = (Arrays.stream(listEmployeesOfDepartment.toArray()).filter(e -> ((Employee)e).getSalary() < salaryValue)).map(e -> (Employee)e).toList();
         return listEmployeesWithSalaryLessThanValue;
     }
 
     // 3.б Получить в качестве параметра число и вывести всех сотрудников с зп больше (или равно) числа (распечатать id, фио и зп в консоль)
-    public List<Employee> GetAllEmployeesWithSalaryOfMoreThanNumberOfDepartment(int departmentNumber, float salaryValue)
+    public List<Employee> getAllEmployeesWithSalaryOfMoreThanNumberOfDepartment(int departmentNumber, float salaryValue)
     {
-        List<Employee> listEmployeesOfDepartment = GetListEmployeesOfDepartment(departmentNumber);
-        List<Employee> listEmployeesWithSalaryMoreThanValue = (Arrays.stream(listEmployeesOfDepartment.toArray()).filter(e -> ((Employee)e).GetSalary() >= salaryValue)).map(e -> (Employee)e).toList();
+        List<Employee> listEmployeesOfDepartment = getListEmployeesOfDepartment(departmentNumber);
+        List<Employee> listEmployeesWithSalaryMoreThanValue = (Arrays.stream(listEmployeesOfDepartment.toArray()).filter(e -> ((Employee)e).getSalary() >= salaryValue)).map(e -> (Employee)e).toList();
         return listEmployeesWithSalaryMoreThanValue;
     }
 
     // Посчитать сумму затрат на ЗП в месяц
-    public float GetSalariesAmount()
+    public float getSalariesAmount()
     {
         float amount = 0;
         for (Employee employee : arrayEmployees)
         {
-            amount += employee.GetSalary();
+            amount += employee.getSalary();
         }
         return amount;
     }

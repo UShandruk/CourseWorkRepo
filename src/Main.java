@@ -92,24 +92,24 @@ public class Main {
         System.out.println("1. Проиндексировать зарплату (вызвать изменение зп у всех сотрудников на величину аргумента в %)");//System.out.printf
         float percentValue = 50;
         System.out.println("Число = " + percentValue);
-        List<Employee> listEmployeesIndexed = employeeBook.IndexTheSalaryOfDepartment(3, percentValue);
-        PrintAllEmployees(listEmployeesIndexed);
+        List<Employee> listEmployeesIndexed = employeeBook.indexTheSalaryOfDepartment(3, percentValue);
+        printAllEmployees(listEmployeesIndexed);
         System.out.println();
 
         System.out.println("2.a. Получить в качестве параметра номер отдела (1-5) и найти сотрудника с минимальной зп");
-        System.out.println(employeeBook.GetEmployeeWithAMinimumSalaryOfDepartment(2).ToStringAll());
+        System.out.println(employeeBook.getEmployeeWithAMinimumSalaryOfDepartment(2).toStringAll());
         System.out.println();
 
         System.out.println("2.b. Получить в качестве параметра номер отдела (1-5) и найти сотрудника с максимальной зп");
-        System.out.println(employeeBook.GetEmployeeWithAMaximumSalaryOfDepartment(5).ToStringAll());
+        System.out.println(employeeBook.getEmployeeWithAMaximumSalaryOfDepartment(5).toStringAll());
         System.out.println();
 
         System.out.println("2.c. Получить в качестве параметра номер отдела (1-5) и найти сумму затрат на зп по отделу");
-        System.out.println(employeeBook.GetSalariesAmountOfDepartment(4));
+        System.out.println(employeeBook.getSalariesAmountOfDepartment(4));
         System.out.println();
 
         System.out.println("2.d. Получить в качестве параметра номер отдела (1-5) и найти среднюю зп по отделу");
-        System.out.println(employeeBook.GetAverageSalaryOfDepartment(4));
+        System.out.println(employeeBook.getAverageSalaryOfDepartment(4));
         System.out.println();
 
         System.out.println("2.e. Проиндексировать зарплату всех сотрудников отдела на процент, который приходит в качестве параметра");
@@ -118,22 +118,22 @@ public class Main {
 
         System.out.println("2.f. Напечатать всех сотрудников отдела (все данные, кроме отдела)");
         // System.out.println(HigherDifficultyTasks.GetListEmployeesOfDepartment(arrayEmployees, 1));
-        List<Employee> listEmployeesOfDepartment = employeeBook.GetListEmployeesOfDepartment(1);
-        PrintAllEmployeesExceptTheDepartmentId(listEmployeesOfDepartment);
+        List<Employee> listEmployeesOfDepartment = employeeBook.getListEmployeesOfDepartment(1);
+        printAllEmployeesExceptTheDepartmentId(listEmployeesOfDepartment);
         System.out.println();
 
         System.out.println("3.a. Получить в качестве параметра число и вывести всех сотрудников с зп меньше числа (распечатать id, фио и зп в консоль)");
         float salaryValue1 = 50000;
         System.out.println("Число = " + salaryValue1);
-        List<Employee> listEmployeesWithSalaryLess = employeeBook.GetAllEmployeesWithSalaryOfLessThanNumberOfDepartment(5, salaryValue1);
-        PrintAllEmployeesExceptTheDepartmentId(listEmployeesWithSalaryLess);
+        List<Employee> listEmployeesWithSalaryLess = employeeBook.getAllEmployeesWithSalaryOfLessThanNumberOfDepartment(5, salaryValue1);
+        printAllEmployeesExceptTheDepartmentId(listEmployeesWithSalaryLess);
         System.out.println();
 
         System.out.println("3.b. Получить в качестве параметра число и вывести всех сотрудников с зп больше (или равно) числа (распечатать id, фио и зп в консоль)");
         float salaryValue2 = 50000;
         System.out.println("Число = " + salaryValue2);
-        List<Employee> listEmployeesWithSalaryMore = employeeBook.GetAllEmployeesWithSalaryOfMoreThanNumberOfDepartment(5, salaryValue2);
-        PrintAllEmployeesExceptTheDepartmentId(listEmployeesWithSalaryMore);
+        List<Employee> listEmployeesWithSalaryMore = employeeBook.getAllEmployeesWithSalaryOfMoreThanNumberOfDepartment(5, salaryValue2);
+        printAllEmployeesExceptTheDepartmentId(listEmployeesWithSalaryMore);
     }
 /*
     // Получить список всех сотрудников со всеми имеющимися по ним данными (значения всех полей (toString))
@@ -157,18 +157,18 @@ public class Main {
     }
 
     // Вывести в консоль список всех сотрудников со всеми имеющимися по ним данными
-    public static void PrintAllEmployees(List<Employee> listEmployees)
+    public static void printAllEmployees(List<Employee> listEmployees)
     {
         for(Employee employee : listEmployees){
-            System.out.println(employee.ToStringAll());
+            System.out.println(employee.toStringAll());
         }
     }
 
     // Вывести в консоль список всех сотрудников со всеми имеющимися по ним данными кроме номера отдела
-    public static void PrintAllEmployeesExceptTheDepartmentId(List<Employee> listEmployees)
+    public static void printAllEmployeesExceptTheDepartmentId(List<Employee> listEmployees)
     {
         for(Employee employee : listEmployees){
-            System.out.println(employee.ToStringAllExceptTheDepartmentId());
+            System.out.println(employee.toStringAllExceptTheDepartmentId());
         }
     }
 
