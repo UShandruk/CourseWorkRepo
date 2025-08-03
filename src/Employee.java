@@ -1,3 +1,5 @@
+import java.util.Objects;
+
 /// Сотрудник
 public class Employee {
 
@@ -15,7 +17,6 @@ public class Employee {
 
     /// Заработная плата
     private float salary;
-
 
 
     /// Конструктор
@@ -66,21 +67,23 @@ public class Employee {
     }
 
     /// Конвертировать все поля класса в одну строку
-    public String toStringAll()
-    {
+    public String toStringAll() {
         return id + " - " + fIO + " - отдел №" + departmentId + " - " + salary;
     }
 
     /// Конвертировать все поля класса (кроме номера отдела) в одну строку
-    public String toStringAllExceptTheDepartmentId()
-    {
+    public String toStringAllExceptTheDepartmentId() {
         return id + " - " + fIO + " - " + salary;
     }
 
     @Override
     public boolean equals(Object o) {
-        if (this == o) return true;
-        if (this.id == ((Employee)o).id) return true;
+        if (this == o)
+            return true;
+        if (this.id == ((Employee) o).id)
+            return true;
+        if (this.hashCode() == o.hashCode())
+            return true;
         else {
             return false;
         }
@@ -88,8 +91,9 @@ public class Employee {
 
     @Override
     public int hashCode() {
-        int result = this != null ? this.hashCode() : 0;
-        result = 31 * result + id;
+        /*int result = this != null ? this.hashCode() : 0;
+        result = 31 * result + id;*/
+        int result = Objects.hash(id);
         return result;
     }
 }
