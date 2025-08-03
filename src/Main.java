@@ -157,17 +157,6 @@ public class Main {
         listEmployeesAll = employeeBook.getListEmployeesAll();
         printAllEmployees(listEmployeesAll);
     }
-/*
-    // Получить список всех сотрудников со всеми имеющимися по ним данными (значения всех полей (toString))
-    private static List<String> getEmployeesString()
-    {
-        List<String> listStringEmployees = new ArrayList<>();
-        for (Employee employee : arrayEmployees)
-        {
-            listStringEmployees.add(employee.ToStringAll());
-        }
-        return listStringEmployees;
-    }*/
 
     // Вывести в консоль список всех сотрудников со всеми имеющимися по ним данными
     public static void PrintAllEmployeesString(List<String> listStringEmployees)
@@ -193,53 +182,4 @@ public class Main {
             System.out.println(employee.toStringAllExceptTheDepartmentId());
         }
     }
-
-
-/*
-    // Найти сотрудника с минимальной ЗП
-    public static Employee GetEmployeeWithAMinimumSalary()
-    {
-        Employee minEmployee = arrayEmployees[0];
-        float minSalary = minEmployee.GetSalary();
-        for (Employee employee : arrayEmployees)
-        {
-            if(employee.GetSalary() < minSalary)
-            {
-                minEmployee = employee;
-            }
-        }
-        return minEmployee;
-    }
-
-    // Найти сотрудника с максимальной ЗП
-    public static Employee GetEmployeeWithAMaximumSalary()
-    {
-        Employee maxEmployee = arrayEmployees[0];
-        float maxSalary = maxEmployee.GetSalary();
-        for (Employee employee : arrayEmployees)
-        {
-            if(employee.GetSalary() > maxSalary)
-            {
-                maxEmployee = employee;
-            }
-        }
-        return maxEmployee;
-    }
-
-    // Подсчитать среднее значение зарплат
-    public static float GetAverageSalary()
-    {
-        float salariesAmount = GetSalariesAmount();
-        int employeeCount = arrayEmployees.length;
-        float averageSalary = salariesAmount / employeeCount;
-        return averageSalary;
-    }
-
-    // Распечатать ФИО всех сотрудников (метод void)
-    public static void PrintAllEmployeesFIO()
-    {
-        for (Employee employee : arrayEmployees){
-            System.out.println(employee.GetFIO());
-        }
-    }*/
 }

@@ -33,10 +33,6 @@ public class Employee {
         return id;
     }
 
-    /*public void setId(int id) {
-        Id = id;
-    }*/
-
     public static int getCounter() {
         return counter;
     }
@@ -92,8 +88,6 @@ public class Employee {
 
     @Override
     public int hashCode() {
-        //int result = this.id != null ? position.hashCode() : 0;
-        //int result = this.hashCode();
         int result = this != null ? this.hashCode() : 0;
         result = 31 * result + id;
         return result;
