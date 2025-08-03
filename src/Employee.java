@@ -1,16 +1,22 @@
+import java.util.Objects;
+
 /// Сотрудник
 public class Employee {
 
     /// Уникальный идентификатор
     private int id;
 
-    public int getId() {
-        return id;
-    }
+    /// Счетчик сотрудников
+    private static int counter;
 
-    /*public void setId(int id) {
-        Id = id;
-    }*/
+    /// ФИО
+    private String fIO;
+
+    /// Номер отдела
+    private int departmentId;
+
+    /// Заработная плата
+    private float salary;
 
 
     /// Конструктор
@@ -23,63 +29,61 @@ public class Employee {
     }
 
 
-    /// Счетчик сотрудников
-    private static int counter;
+    /// Методы
+    public int getId() {
+        return id;
+    }
 
-    public static int GetCounter() {
+    public static int getCounter() {
         return counter;
     }
 
-    public static void SetCounter(int counter) {
+    public static void setCounter(int counter) {
         Employee.counter = counter;
     }
 
-
-    /// ФИО
-    private String fIO;
-
-    public String GetFIO() {
+    public String getFIO() {
         return this.fIO;
     }
 
-    public void SetFIO(String FIO) {
-        this.fIO = FIO;
+    public void setFIO(String FIO) {
+        this.fIO = fIO;
     }
 
-
-    /// Номер отдела
-    private int departmentId;
-
-    public int GetDepartmentId() {
+    public int getDepartmentId() {
         return this.departmentId;
     }
 
-    public void SetDepartmentId(int departmentId) {
+    public void setDepartmentId(int departmentId) {
         this.departmentId = departmentId;
     }
 
-
-    /// Заработная плата
-    private float salary;
-
-    public float GetSalary() {
+    public float getSalary() {
         return salary;
     }
 
-    public void SetSalary(float salary) {
+    public void setSalary(float salary) {
         this.salary = salary;
     }
 
     /// Конвертировать все поля класса в одну строку
-    public String ToString()
-    {
-        return id + " - " + fIO + " - " + departmentId + " - " + salary;
+    public String toStringAll() {
+        return id + " - " + fIO + " - отдел №" + departmentId + " - " + salary;
+    }
+
+    /// Конвертировать все поля класса (кроме номера отдела) в одну строку
+    public String toStringAllExceptTheDepartmentId() {
+        return id + " - " + fIO + " - " + salary;
     }
 
     @Override
     public boolean equals(Object o) {
-        if (this == o) return true;
-        if (this.id == ((Employee)o).id) return true;
+        if (this == o)
+            return true;
+        if (this.id == ((Employee) o).id)
+            return true;
+        if (this.hashCode() == o.hashCode())
+            return true;
         else {
             return false;
         }
@@ -87,9 +91,9 @@ public class Employee {
 
     @Override
     public int hashCode() {
-        //int result = this.id != null ? position.hashCode() : 0;
-        int result = this.hashCode();
-        result = 31 * result + id;
+        /*int result = this != null ? this.hashCode() : 0;
+        result = 31 * result + id;*/
+        int result = Objects.hash(id);
         return result;
     }
 }
